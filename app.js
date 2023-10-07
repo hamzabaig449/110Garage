@@ -6,22 +6,25 @@ const logger = require('morgan');
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const compression = require('compression');
+require('dotenv').config();
 
 const electricRouter = require('./routes/electric_index');
 const gasRouter = require('./routes/gas_index');
 const adminRouter = require('./routes/admin');
 var UserModel = require("./models/CustomerModel");
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 
 //Connecting to Mongodb
 const db = async () => {
     try {
-        const conn = await mongoose.connect('mongodb://127.0.0.1:27017/autorizz', {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useFindAndModify: false
-        });
+        const conn = await mongoose.connect(process.env.MONGO_URI);
+        // const conn = await mongoose.connect('mongodb://127.0.0.1:27017/autorizz', {
+        //     useNewUrlParser: true,
+        //     useUnifiedTopology: true,
+        //     useFindAndModify: false
+        // });
 
         console.log("MongoDB connected");
 
