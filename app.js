@@ -20,7 +20,12 @@ const PORT = process.env.PORT || 3000;
 // Connecting to Mongodb
 const db = async () => {
     try {
-        const conn = await mongoose.connect(process.env.MONGO_URI);
+        const conn = await mongoose.connect(process.env.MONGO_URI,{
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useFindAndModify: false
+
+        });
         // const conn = await mongoose.connect('mongodb://127.0.0.1:27017/autorizz', {
         //     useNewUrlParser: true,
         //     useUnifiedTopology: true,
@@ -37,6 +42,15 @@ const db = async () => {
 }
 
 db();
+async function insertData(data) {
+    const db = mongoose.connection; // Access the Mongoose connection
+    const collection = db.collection('user'); // Replace with your collection name
+    const result = await collection.insertOne(data);
+    console.log('Inserted a document with ID:', result.insertedId);
+}
+
+// Usage
+insertData({ userID: 'admin', password: 'admin' });
 
 
 // view engine setup
