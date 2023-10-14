@@ -63,7 +63,7 @@ router.post("/login", async function (req, res) {
 
 // GET - Home Page
 router.get('/home', function (req, res) {
-    res.sendFile(__dirname + "/admin_home.html");
+    res.render("admin/admin_index", { layout: false });
 });
 
 
@@ -93,6 +93,12 @@ router.get('/admin_index', async function (req, res) {
     res.render("admin/admin_index", { layout: false });
 });
 
+// GET Petrol Cars
+router.get('/petrol', async function (req, res) {
+
+    let gas_models = await GasModel.find();
+    res.render("admin/petrol_list", { list: gas_models, layout: 'layout_list' });
+});
 
 // GET Electric Cars
 router.get('/electric', async function (req, res) {
@@ -131,7 +137,53 @@ router.get('/deleteelectric/:id', async function (req, res) {
 });
 
 
+// Edit Electric Car
+router.get('/editelectric/:id', async function (req, res) {
 
+    const electric_model = await ElectricModel.findById(req.params.id);
+    console.log(electric_model);
+    res.render("admin/edit_electric", { electric_model });
+    
+});
+
+// Edit Electric Car Form
+router.post('/editelectric', async function (req, res) {
+
+    
+    let id = req.body.id;
+    console.log(id);
+    
+    const electric_model = await ElectricModel.findByIdAndUpdate(
+        req.body.id,
+        {
+          $set: {
+            imagePath: req.body.imagePath,
+            title: req.body.title,
+            t1: req.body.t1,
+            t2: req.body.t2,
+            year: req.body.year,
+            price: req.body.price,
+            priceStr: req.body.priceStr,
+            topspeed: req.body.topspeed,
+            time60: req.body.time60,
+            range: req.body.range,
+            color: req.body.color,
+            interior: req.body.interior,
+            wheel: req.body.wheel,
+            description: req.body.description,
+            safety: req.body.safety,
+            rangedesc: req.body.rangedesc,
+          },
+        },
+        {
+          upsert: true,
+        }
+      );
+    console.log(electric_model);
+
+    res.redirect('/admin/electric');
+
+});
 
 
 

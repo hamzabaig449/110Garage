@@ -20,7 +20,8 @@
     <style>
         body {
             background-image: url("/images/admin.jpg");
-            background-size: cover;
+            overflow: auto;
+            width: 100%;
         }
     </style>
 
@@ -31,7 +32,7 @@
     <div class="container">
         <div class="admin-nav text-center">
 
-            <a href="/admin/home"><img src="/images/t2.png" height="50px" alt="autorizz"></a><br>
+            <a href="/admin/home"><h2 style="color: rgb(255, 255, 255);">Admin Panel</h2></a><br>
 
             <button type="button" class="btn btn-dark"><a href="electric">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -44,9 +45,11 @@
 
             <button type="button" class="btn btn-dark"><a href="gas"><i class="fas fa-burn"></i> Gas</a>
             </button><br>
+            <button type="button" class="btn btn-dark"><a href="gas"><i class="fas fa-burn"></i> Petrol</a>
+            </button><br>
             <button type="button" class="btn btn-dark"><a href="customers"> Customers </a>
             </button><br>
-            <button type="button" class="btn btn-dark"><a href="images"> Upload Image </a>
+            <button type="button" class="btn btn-dark"><a href="/admin/service"> Services </a>
             </button><br>
 
         </div>

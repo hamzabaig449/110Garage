@@ -12,11 +12,12 @@ const electricRouter = require('./routes/electric_index');
 const gasRouter = require('./routes/gas_index');
 const adminRouter = require('./routes/admin');
 var UserModel = require("./models/CustomerModel");
+const petrolRouter = require('./routes/petrol_index');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 
-//Connecting to Mongodb
+// Connecting to Mongodb
 const db = async () => {
     try {
         const conn = await mongoose.connect(process.env.MONGO_URI);
@@ -60,7 +61,8 @@ console.log("App running on Localhost:5000");
 
 // Routing
 app.get('/', (req, res) => {
-    res.redirect('/home');
+    // res.redirect('/home');
+    res.sendFile(__dirname + "/routes/index.html");
 });
 
 
@@ -71,6 +73,7 @@ app.get('/home', function (req, res) {
 app.use('/admin', adminRouter);
 app.use('/electric', electricRouter);
 app.use('/gas', gasRouter);
+app.use('/petrol', petrolRouter);
 
 
 //Users
