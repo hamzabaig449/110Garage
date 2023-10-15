@@ -20,17 +20,17 @@ const PORT = process.env.PORT || 3000;
 // Connecting to Mongodb
 const db = async () => {
     try {
-        // const conn = await mongoose.connect(process.env.MONGO_URI,{
-        //     useNewUrlParser: true,
-        //     useUnifiedTopology: true,
-        //     useFindAndModify: false
-
-        // });
-        const conn = await mongoose.connect('mongodb://127.0.0.1:27017/autorizz', {
+        const conn = await mongoose.connect(process.env.MONGO_URI,{
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useFindAndModify: false
+
         });
+        // const conn = await mongoose.connect('mongodb://127.0.0.1:27017/autorizz', {
+        //     useNewUrlParser: true,
+        //     useUnifiedTopology: true,
+        //     useFindAndModify: false
+        // });
 
         console.log("MongoDB connected");
 
