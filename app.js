@@ -20,17 +20,17 @@ const PORT = process.env.PORT || 3000;
 // Connecting to Mongodb
 const db = async () => {
     try {
-        const conn = await mongoose.connect(process.env.MONGO_URI,{
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useFindAndModify: false
-
-        });
-        // const conn = await mongoose.connect('mongodb://127.0.0.1:27017/autorizz', {
+        // const conn = await mongoose.connect(process.env.MONGO_URI,{
         //     useNewUrlParser: true,
         //     useUnifiedTopology: true,
         //     useFindAndModify: false
+
         // });
+        const conn = await mongoose.connect('mongodb://127.0.0.1:27017/autorizz', {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useFindAndModify: false
+        });
 
         console.log("MongoDB connected");
 
@@ -42,16 +42,68 @@ const db = async () => {
 }
 
 db();
-async function insertData(data) {
-    const db = mongoose.connection; // Access the Mongoose connection
-    const collection = db.collection('user'); // Replace with your collection name
-    const result = await collection.insertOne(data);
-    console.log('Inserted a document with ID:', result.insertedId);
-}
+// async function insertData(data) {
+//     const db = mongoose.connection; // Access the Mongoose connection
+//     const collection = db.collection('user'); // Replace with your collection name
+//     const result = await collection.insertOne(data);
+//     console.log('Inserted a document with ID:', result.insertedId);
+// }
 
-// Usage
-insertData({ userID: 'admin', password: 'admin' });
+// // Usage
+// insertData({ userID: 'admin', password: 'admin' });
+// Function to insert multiple documents
+// async function insertManyData(data) {
+//     try {
+//         const db = mongoose.connection; // Access the Mongoose connection
+//         const collection = db.collection('electricmodel'); // Replace with your collection name
+//         const result = await collection.insertMany(data); // Use insertMany instead of insertOne
+//         console.log('Inserted', result.insertedCount, 'documents');
+//     } catch (error) {
+//         console.error('Error inserting documents:', error);
+//     }
+// }
 
+// // Usage
+// const dataToInsert = [
+//     {
+        
+//         imagePath: "images/7.JPG",
+//         title: "Tesla Model Y Performance",
+//         t1: "2020 Tesla Model Y",
+//         t2: "Performance Edition",
+//         year: 2020,
+//         price: 65000,
+//         priceStr: "65,000",
+//         topspeed: "145",
+//         time60: "3.5",
+//         range: "315",
+//         colour: "Solid Black Paint",
+//         interior: "Cream Oakwood Interior",
+//         wheel: "19'' Gemini Wheels",
+//         description: "Model Y provides maximum versatility creating flexible storage for skis, furniture, luggage and a low trunk floor that makes loading and unloading easy and quick with all-Wheel Drive has two ultra-responsive, independent electric motors that digitally control torque.",
+//         safety: "Safety is the most important part of the overall Model 3 design. The metal structure is a combination of aluminum and steel, for maximum strength in every area. In a roof-crush test, Model 3 resisted four times its own mass, even with an all-glass roof",
+//         rangedesc: "Model 3 is fully electric, so you never need to visit a gas station again. If you charge overnight at home, you can wake up to a full battery every morning. And when you’re on the road, it’s easy to plug in along the way—at any public station or with the Tesla charging network."
+//       },{
+//         imagePath: "images/8.JPG",
+//         title: "Tesla Model Y Long Range AWD",
+//         t1: "2020 Tesla Model Y",
+//         t2: "Long Range AWD Edition",
+//         year: 2020,
+//         price: 52000,
+//         priceStr: "52,000",
+//         topspeed: "135",
+//         time60: "4.8",
+//         range: "346",
+//         colour: "Red Metallic Paint",
+//         interior: "Cream Oakwood Interior",
+//         wheel: "19'' Induction Wheels",
+//         description: "Model Y provides maximum versatility creating flexible storage for skis, furniture, luggage and a low trunk floor that makes loading and unloading easy and quick with all-Wheel Drive has two ultra-responsive, independent electric motors that digitally control torque.",
+//         safety: "Safety is the most important part of the overall Model 3 design. The metal structure is a combination of aluminum and steel, for maximum strength in every area. In a roof-crush test, Model 3 resisted four times its own mass, even with an all-glass roof",
+//         rangedesc: "Model 3 is fully electric, so you never need to visit a gas station again. If you charge overnight at home, you can wake up to a full battery every morning. And when you’re on the road, it’s easy to plug in along the way—at any public station or with the Tesla charging network."
+//       }
+// ];
+
+// insertManyData(dataToInsert);
 
 // view engine setup
 app.engine('.hbs', exphbs({
