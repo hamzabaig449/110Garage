@@ -8,6 +8,9 @@ $(document).ready(function () {
     if (curr == "gas") {
         $("#Gas").addClass('active');
     }
+    if (curr == "rent") {
+        $("#Rent").addClass('active');
+    }
 });
 
 

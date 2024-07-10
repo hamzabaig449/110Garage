@@ -23,11 +23,16 @@
 
 
 
-    <h3>Add Car</h3>
+    <h3>Add rent car</h3>
 
-    <form action="addelectric" method="POST" autocomplete="off">
+    <form action="addrent" method="POST" autocomplete="off" enctype="multipart/form-data" >
 
         <div class="form-row">
+            {{!-- enctype="multipart/form-data" --}}
+            {{!-- <div class="form-group col-md-10">
+                <label>ImagePath (image/filename.extension)</label>
+                <input type="text" class="form-control" name="imagePath" placeholder="images/1.jpg">
+            </div> --}}
             <div class="form-group col-md-10">
             <label>Image Paths (image/filename.extension)</label>
             <input type="file" class="form-control" name="imagePath" multiple>
@@ -36,16 +41,10 @@
 
             <div class="form-group col-md-3">
                 <label>Title</label>
-                <input type="text" class="form-control" name="title" placeholder="2020 Lexus nx 300h">
+                <input type="text" class="form-control" name="title" placeholder="Tesla Model Y Long Range AWD">
             </div>
-            <div class="form-group col-md-3">
-                <label>T1</label>
-                <input type="text" class="form-control" name="t1" placeholder="Lexus">
-            </div>
-            <div class="form-group col-md-3">
-                <label>T2</label>
-                <input type="text" class="form-control" name="t2" placeholder="Lexus Nx">
-            </div>
+            
+            
 
 
             <div class="form-group col-md-2">
@@ -53,38 +52,54 @@
                 <input type="number" class="form-control" name="year" placeholder="2020">
             </div>
             <div class="form-group col-md-2">
-                <label>Price</label>
-                <input type="number" class="form-control" name="price" placeholder="54000">
+                <label>Daily Rent</label>
+                <input type="number" class="form-control" name="dailyRent" placeholder="200">
             </div>
             <div class="form-group col-md-2">
+                <label>Weekly Rent</label>
+                <input type="number" class="form-control" name="weeklyRent" placeholder="1000">
+            </div>
+            <div class="form-group col-md-2">
+                <label>Deposit</label>
+                <input type="number" class="form-control" name="deposit" placeholder="500">
+            </div>
+            <div class="form-group col-md-2">
+                <label>Minimum Age</label>
+                <input type="number" class="form-control" name="age" placeholder="23">
+            </div> 
+            <div class="form-group col-md-2">
+                <label>Car Total Price</label>
+                <input type="number" class="form-control" name="price" placeholder="54000">
+            </div>
+            {{!-- <div class="form-group col-md-2">
                 <label>PriceStr</label>
                 <input type="text" class="form-control" name="priceStr" placeholder="54,000">
-            </div>
+            </div> --}}
 
 
             {{!-- <div class="form-group col-md-2">
                 <label>Top Speed</label>
                 <input type="text" class="form-control" name="topspeed" placeholder="135">
-            </div>
-            <div class="form-group col-md-2">
+            </div> --}}
+            {{!-- <div class="form-group col-md-2">
                 <label>Time60</label>
                 <input type="text" class="form-control" name="time60" placeholder="4.8">
-            </div>
-            <div class="form-group col-md-2">
+            </div> --}}
+            {{!-- <div class="form-group col-md-2">
                 <label>Range</label>
                 <input type="text" class="form-control" name="range" placeholder="346">
             </div> --}}
 
 
-            <div class="form-group col-md-3">
+            {{!-- <div class="form-group col-md-3">
                 <label>Color</label>
                 <input type="text" class="form-control" name="colour" placeholder="Red Metallic Paint">
-            </div>
-            <div class="form-group col-md-3">
+            </div> --}}
+            {{!-- <div class="form-group col-md-3">
                 <label>Interior</label>
                 <input type="text" class="form-control" name="interior" placeholder="Cream Oakwood Interior">
             </div>
-            {{!-- <div class="form-group col-md-3">
+            <div class="form-group col-md-3">
                 <label>Wheel</label>
                 <input type="text" class="form-control" name="wheel" placeholder="19'' Induction Wheels">
             </div> --}}
@@ -94,11 +109,11 @@
                 <label>Description</label>
                 <input type="text" class="form-control" name="description" placeholder="Description Info">
             </div>
-            <div class="form-group col-md-7">
+            {{!-- <div class="form-group col-md-7">
                 <label>Safety</label>
                 <input type="text" class="form-control" name="safety" placeholder="Safety Info">
             </div>
-            {{!-- <div class="form-group col-md-7">
+            <div class="form-group col-md-7">
                 <label>RangeDesc</label>
                 <input type="text" class="form-control" name="rangedesc" placeholder="Range Info">
             </div> --}}
@@ -107,7 +122,7 @@
 
         <div class="form-group">
             <button type="submit" class="btn btn-info"> Save </button>
-            <a class="btn btn-secondary" href="electric"> Back </a>
+            <a class="btn btn-secondary" href="rent"> Back </a>
         </div>
     </form>
 

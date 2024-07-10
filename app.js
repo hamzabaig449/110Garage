@@ -6,31 +6,33 @@ const logger = require('morgan');
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const compression = require('compression');
-require('dotenv').config();
+const bodyParser = require('body-parser');
+// require('dotenv').config();
 
 const electricRouter = require('./routes/electric_index');
 const gasRouter = require('./routes/gas_index');
 const adminRouter = require('./routes/admin');
 var UserModel = require("./models/CustomerModel");
 const petrolRouter = require('./routes/petrol_index');
+const rentRouter = require('./routes/rent_index');
 const app = express();
-const PORT = process.env.PORT || 3000;
+// const PORT = process.env.PORT || 3000;
 
 
 // Connecting to Mongodb
 const db = async () => {
     try {
-        const conn = await mongoose.connect(process.env.MONGO_URI,{
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useFindAndModify: false
-
-        });
-        // const conn = await mongoose.connect('mongodb://127.0.0.1:27017/autorizz', {
+        // const conn = await mongoose.connect(process.env.MONGO_URI,{
         //     useNewUrlParser: true,
         //     useUnifiedTopology: true,
         //     useFindAndModify: false
+
         // });
+        const conn = await mongoose.connect('mongodb://127.0.0.1:27017/autorizz', {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useFindAndModify: false
+        });
 
         console.log("MongoDB connected");
 
@@ -117,28 +119,38 @@ app.set('view engine', '.hbs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(compression());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 console.log("App running on Localhost:5000");
 
 
 // Routing
+
 app.get('/', (req, res) => {
     // res.redirect('/home');
     res.sendFile(__dirname + "/routes/index.html");
+});
+app.get('/myfile', (req, res) => {
+    // res.redirect('/home');
+    res.render("/routes/index.html");
 });
 
 
 app.get('/home', function (req, res) {
     res.sendFile(__dirname + "/routes/index.html");
 });
+app.get('/services.html', function (req, res) {
+    res.sendFile(__dirname + "/routes/services.html");
+});
 
 app.use('/admin', adminRouter);
 app.use('/electric', electricRouter);
 app.use('/gas', gasRouter);
+app.use('/rentacar',rentRouter);
 app.use('/petrol', petrolRouter);
 
 
